@@ -1,0 +1,70 @@
+<BOUCLE_content(MODULES){id_module}>
+<article>
+
+    <header class="cartouche">
+        <h1 class="titre">#TITRE_COURT</h1>
+    </header>
+    
+    <div class="main">
+        [<p class="chapo">(#PRESENTATION)</p>]
+        
+        [<div class="texte">(#PRESENTATION_GENERALE|image_reduire{500,0})</div>]
+
+        [<h3 class="spip">#MODELE{module_temps_1, id_ue_edition}</h3>
+        <div class="texte">
+	        <p><strong>(#THEME_TEMPS_1)</strong></p>
+	        [(#PRESENTATION_TEMPS_1|image_reduire{500,0})]]    
+	        <B_intervenants1>
+	        <strong>Intervenant-e-s : </strong>
+	        <BOUCLE_intervenants1(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==1}{confirme!=Annulé-e}{', '}>#PRENOM #NOM (#ORGANISATION - #PAYS)</BOUCLE_intervenants1>
+        [(#THEME_TEMPS_1|oui)</div>]
+
+        [<h3 class="spip">#MODELE{module_temps_2, id_ue_edition}</h3>
+        <div class="texte">
+	        <p><strong>(#THEME_TEMPS_2)</strong></p>
+	        [(#PRESENTATION_TEMPS_2|image_reduire{500,0})]]
+	        <B_intervenants2>
+	        <strong>Intervenant-e-s : </strong>
+	        <BOUCLE_intervenants2(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==2}{confirme!=Annulé-e}{', '}>#PRENOM #NOM (#ORGANISATION - #PAYS)</BOUCLE_intervenants2>
+        [(#THEME_TEMPS_2|oui)</div>]
+
+        [<h3 class="spip">#MODELE{module_temps_3, id_ue_edition}</h3>
+        <div class="texte">
+	        <p><strong>(#THEME_TEMPS_3)</strong></p>
+	        [(#PRESENTATION_TEMPS_3|image_reduire{500,0})]]
+	        <B_intervenants3>
+	        <strong>Intervenant-e-s : </strong>
+	        <BOUCLE_intervenants3(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==3}{confirme!=Annulé-e}{', '}>#PRENOM #NOM (#ORGANISATION - #PAYS)</BOUCLE_intervenants3>
+        [(#THEME_TEMPS_3|oui)</div>]
+
+        [<div class="ps">(#DOCUMENTS_COMPLEMENTAIRES|image_reduire{500,0})</div>]
+
+        [<div class="ps"><p><strong>Partenaires internationaux : </strong>(#PARTENAIRES_INTERNATIONAUX)</p></div>]
+
+        <div class="ps">
+	        <p>
+		        <strong>Organisé par : </strong>
+		        <BOUCLE_orga(ORGANISATIONS){id_organisation}>#INTITULE_COURT</BOUCLE_orga><B_autres_organisations>, 
+		        <BOUCLE_autres_organisations(ORGANISATIONS spip_organisations_liens){id_objet=#ID_MODULE}{objet=module}{', '}>
+			    #INTITULE_COURT
+		        </BOUCLE_autres_organisations>
+		        [, (#COMPLEMENT_AUTRES_ORGANISATIONS)]
+	        </p>
+        </div>
+    </div>
+
+	<aside>
+        <B_documents_joints>
+	    <div class="liste documents documents_joints">
+	        <h2 class="h2"><:medias:titre_documents_joints:></h2>
+	        <ul class="liste-items">
+		        <BOUCLE_documents_joints(DOCUMENTS) {objet=module}{id_objet=#ID_MODULE} {extension !IN gif,jpg,png} {vu=non}{par num titre, date}{doublons}>
+		        <li class="item">#INCLURE{fond=inclure/resume/document,id_document}</li>
+		        </BOUCLE_documents_joints>
+	        </ul>
+	    </div>
+        </B_documents_joints>
+	</aside>
+
+</article>		
+</BOUCLE_content>

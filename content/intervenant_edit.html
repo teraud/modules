@@ -1,0 +1,13 @@
+[(#ID_INTERVENANT|intval|oui)
+	[(#AUTORISER{modifier,intervenant,#ID_INTERVENANT}|sinon_interdire_acces)]
+][(#ID_INTERVENANT|intval|non)
+	[(#AUTORISER{creer,intervenant,#ID_INTERVENANT,'',#ARRAY{objet,#ENV{objet,''}}}|sinon_interdire_acces)]
+]
+<div class="cadre-formulaire-editer[(#ENV{popin,''}|oui)popin]">
+    <div class="entete-formulaire">
+	    <h1>Ajouter un intervenant</h1>
+    </div>
+    <div class="ajax">
+        #FORMULAIRE_EDITER_INTERVENANT{#ENV{id_intervenant,new},#ENV{id_objet,''},#ENV{objet,''},#ENV{redirect,''}}
+    </div>
+</div>

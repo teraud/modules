@@ -1,0 +1,6 @@
+<BOUCLE_organisations(ORGANISATIONS){spip_organisations_ue_editions.id_ue_edition ?}{module=on}{par intitule_court}>
+<div class="choix">
+	<input type="checkbox" name="autres_organisations_france\[\]" class="checkbox" id="champ_autres_organisations_france_#ID_ORGANISATION" value="#ID_ORGANISATION"[ (#ID_ORGANISATION|in_any{#ENV{autres_organisations_france}}|oui)checked="checked"] />
+	<label for="champ_autres_organisations_france_#ID_ORGANISATION">#INTITULE_COURT</label>
+</div>
+</BOUCLE_organisations>

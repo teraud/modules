@@ -1,0 +1,44 @@
+#SET{args,#ARRAY{id_module, #ENV{id_module}}}
+<a href="[(#URL_PAGE{transmettre,[(#VAL{participants_modules}|param_low_sec{#GET{args}, '', 'transmettre'})]})]" class="noajax">Export participants</a>
+<a href="[(#URL_PAGE{transmettre,[(#VAL{participants_modules_presents}|param_low_sec{#GET{args}, '', 'transmettre'})]})]" class="noajax">Export participants présents</a>
+
+<BOUCLE_champs(DATA){source table,#ENV{objet}|objet_info{champs_contenu}}>
+#SET{value,#ENV{id}|generer_info_entite{#ENV{objet},#VALEUR}}
+<div class="champ contenu_#VALEUR[ (#GET{value}|strlen|?{'',vide})]">
+<div class='label'>[(#ENV{objet}|concat{':info_',#VALEUR}|_T)]</div>
+<div class='#VALEUR'>#GET{value}</div>
+</div>
+</BOUCLE_champs>
+
+<B_organisation>
+<div class='label'>Organisation chef de file</div>
+<ul>
+<BOUCLE_organisation(MODULES spip_organisations){id_module}{tout}>
+	<li>#INTITULE_COURT</li>
+</BOUCLE_organisation>
+</ul>
+</B_organisation>
+
+<B_autres_organisations>
+<div class='label'>Autres organisations France</div>
+<ul>
+<BOUCLE_autres_organisations(ORGANISATIONS spip_organisations_liens){id_objet=#ID_MODULE}{objet=module}>
+	<li>#INTITULE_COURT</li>
+</BOUCLE_autres_organisations>
+</ul>
+</B_autres_organisations>
+
+<B_intervenants>
+<div class='label'>Intervenants</div>
+<ul>
+<BOUCLE_intervenants(INTERVENANTS){id_module}{confirme!=Annulé-e}>
+	<li>#NOM #PRENOM[ - (#TEMPS) - ][(#LANGUE) ]#AUTRE_LANGUE[ - (#CONFIRME)]</li>
+</BOUCLE_intervenants>
+</ul>
+</B_intervenants>
+
+[<div class="champ contenu_notes">
+<div class='label'><:info_notes:></div>
+<div dir='#LANG_DIR' class='notes'>(#NOTES)</div>
+</div>]
+</B_champs>

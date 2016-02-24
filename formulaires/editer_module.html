@@ -1,0 +1,168 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_module,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}' enctype='multipart/form-data'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_module' value='#ENV{id_module}' />
+		[(#REM|test_espace_prive|non)<input type='hidden' name='id_parent' value='#ENV{id_parent}' />
+		<input type='hidden' name='id_ue_edition' value='#ENV{id_ue_edition}' />]
+
+		[(#REM|test_espace_prive|oui)<fieldset>
+			<ul>
+				[<li class="editer editer_parent[ (#ENV**{erreurs}|table_valeur{id_parent}|oui)erreur]">
+					<label for="id_parent"><:titre_cadre_interieur_rubrique:></label>[
+					<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{id_parent})</span>
+					]
+					(#VAL|chercher_rubrique{#ENV{id_atelier},#ENV{id_parent},'atelier',#ENV{id_secteur},#ENV**{config}|table_valeur{restreint},0,form_simple})
+				</li>]
+				<li class="editer editer_id_ue_edition obligatoire[ (#ENV**{erreurs}|table_valeur{id_ue_edition}|oui)erreur]">
+					<label for="id_ue_edition">Édition</label>[
+					<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{id_ue_edition})</span>
+					]
+					<select name="id_ue_edition" id="id_ue_edition">
+						<INCLURE{fond=formulaires/inc-editions, env} />
+					</select>
+				</li>
+			</ul>
+		</fieldset>]
+		
+		<fieldset>
+			
+			<legend>Personne référente</legend>
+			
+			<ul>
+				[(#SAISIE{input, nom_referent, label=<:module:label_nom_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, prenom_referent, label=<:module:label_prenom_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, organisation_referent, label=<:module:label_organisation_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, adresse_referent, label=<:module:label_adresse_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, code_postal_referent, label=<:module:label_code_postal_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, ville_referent, label=<:module:label_ville_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, email_referent, label=<:module:label_email_referent:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, email_referent_confirmation, label=<:module:label_email_referent_confirmation:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{input, telephone_referent, label=<:module:label_telephone_referent:>, obligatoire=oui, info_obligatoire=*})]
+
+			</ul>
+		
+		</fieldset>
+		<fieldset>
+			
+			<legend>Co-organisateurs</legend>
+			
+			<ul>
+				
+				<li class="editer editer_organisation_chef_de_file obligatoire saisie_selection">
+					<label  for="champ_id_organisation">Organisation chef de file<span class='obligatoire'>  *</span></label>[
+					<span class="erreur_message">(#ENV**{erreurs}|table_valeur{id_organisation})</span>
+					]<select name="id_organisation" id="champ_id_organisation">
+						<option value=""></option>
+						<INCLURE{fond=formulaires/inc-organisations-select-modules}{env}>
+					</select>
+				</li>
+				[(#SAISIE{explication, id_organisation, texte=<:module:explication_orga_chef_de_file:>})]			
+				
+				<li class="editer editer_autres_organisations_france obligatoire saisie_checkbox">
+					<label>Autres organisations France impliquées<span class='obligatoire'>  *</span></label>[
+					<span class="erreur_message">(#ENV**{erreurs}|table_valeur{autres_organisations_france})</span>
+					]<INCLURE{fond=formulaires/inc-organisations-checkbox-modules}{env}>
+				</li>
+				[(#SAISIE{textarea, complement_autres_organisations, label=Autres, rows=5})]
+				
+				[(#SAISIE{textarea, partenaires_internationaux, label=<:module:label_partenaires_internationaux:>, rows=5})]
+				
+			</ul>
+				
+		</fieldset>
+		<fieldset>
+				
+			<legend>Présentation du module</legend>
+
+			<ul>	
+				[(#SAISIE{input, titre_court, label=<:module:label_titre_court:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{explication, titre_court, texte=Ce titre sera utilisé pour les supports de communication.})]
+				[(#SAISIE{textarea, presentation, label=<:module:label_presentation:>, obligatoire=oui, info_obligatoire=*})]
+				[(#SAISIE{textarea, presentation_generale, label=<:module:label_presentation_generale:>})]
+			</ul>
+			
+			
+			<fieldset>
+
+				<legend>Déroulé du module</legend>
+				
+				<ul>
+					<li>
+						<p><strong>#MODELE{module_temps_1, id_ue_edition}</strong></p>
+						<ul>
+							[(#SAISIE{input, theme_temps_1, label=<:module:label_theme:>})]
+							[(#SAISIE{textarea, presentation_temps_1, label=<:module:label_presentation_theme:>})]
+
+						</ul>
+					</li>
+
+					<li>
+						<p><strong>#MODELE{module_temps_2, id_ue_edition}</strong></p>
+						<ul>
+							[(#SAISIE{input, theme_temps_2, label=<:module:label_theme:>})]
+							[(#SAISIE{textarea, presentation_temps_2, label=<:module:label_presentation_theme:>})]
+						</ul>
+					</li>
+
+					<li>
+						<p><strong>#MODELE{module_temps_3, id_ue_edition}</strong></p>
+						<ul>
+							[(#SAISIE{input, theme_temps_3, label=<:module:label_theme:>})]
+							[(#SAISIE{textarea, presentation_temps_3, label=<:module:label_presentation_theme:>})]
+						</ul>
+					</li>
+
+					<li>
+						<INCLURE{fond=formulaires/inc-intervenants}{id_objet=#ID_MODULE}{objet=module}{env}>
+					</li>
+					
+				</ul>
+				
+			</fieldset>
+			
+			<ul>
+				[(#SAISIE{textarea, documents_complementaires, label=<:module:label_documents_complementaires:>})]
+				[(#SAISIE{explication, documents_complementaires, texte=Documents de référence à proposer aux participants.})]
+			</ul>	
+			
+		</fieldset>
+		
+		[
+		<fieldset>
+			<legend><:medias:bouton_ajouter_document:> (PDF)</legend>
+			<INCLURE{fond=prive/objets/liste/documents_module_atelier, id_objet=#ENV{id_module}, objet=module} />
+			<ul>
+				<li class='editer saisie_document_forum[ (#ENV**{erreurs}|table_valeur{document_forum}|oui)erreur]'>
+					[<span class='erreur_message'>(#ENV**{erreurs}|table_valeur{document_forum})</span>]
+					<input type="hidden" name="cle_ajouter_document" value="(#ENV{cle_ajouter_document})" />
+					[<div id="ajouter_document_up">(#ENV{ajouter_document})
+						<label for="supprimer_document_ajoute"><input type='checkbox' name='supprimer_document_ajoute' id='supprimer_document_ajoute' />
+						<:lien_supprimer:></label>
+					</div>]
+					<div>
+						<input class='file' type="file" name="ajouter_document" id="ajouter_document" />
+					</div>
+
+					<script type='text/javascript'>/*<!\[CDATA\[*/
+						if (window.jQuery) jQuery(function(){
+							jQuery('#ajouter_document_up')
+							.next().hide()
+							.prev().find(':checkbox').bind('change', function(){
+								jQuery('#ajouter_document_up').hide().next().show();
+							});
+						});
+					/*\]\]>*/</script>
+				</li>
+			</ul></fieldset>
+		]
+
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' name='enregistrer' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

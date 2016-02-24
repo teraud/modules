@@ -1,0 +1,11 @@
+<BOUCLE0(AUTEURS){tout}{id_auteur=#ENV{id}}{lang_select}><?php
+if ([(#ID_AUTEUR|securiser_acces{#ENV{cle},transmettre,#ENV{op}, #ENV{args}}|?{1,0})]) {
+?><BOUCLE2(spip_modules_liens){id_module=#ENV{id_module}}{objet=inscription}{choix=1}><BOUCLE3(spip_inscriptions){id_inscription=#ID_OBJET}{statut_inscription!=supprimée}{present_universite=oui}{forcer_module_atelier!=oui}>#ID_INSCRIPTION;[(#NOM|traiter_nom)];#PRENOM;#PAYS;#EMAIL
+</BOUCLE3></BOUCLE2>
+<BOUCLE4(spip_inscriptions){module_attribue=#ENV{id_module}}{forcer_module_atelier=oui}{present_universite=oui}>#ID_INSCRIPTION;[(#NOM|traiter_nom)];#PRENOM;#PAYS;#EMAIL
+</BOUCLE4>
+<?php
+} else {
+include_spip('inc/minipres'); 
+echo minipres();
+}?></BOUCLE0>

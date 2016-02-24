@@ -1,0 +1,17 @@
+<BOUCLE_content(ARTICLES){id_article}>
+<section>
+	<header class="cartouche">
+		<h1>#TITRE</h1>
+	</header>
+
+	<div class="main">
+		<B_derniere_edition>
+		<div class="texte">#TEXTE</div>
+		<BOUCLE_derniere_edition(UE_EDITIONS){!par id_ue_edition}{0,1}>
+		<INCLURE{fond=liste/modules-acces-restreint, id_ue_edition, env} />
+		</BOUCLE_derniere_edition>
+		[(#AUTORISER{creer,module}|oui)<p><a href="[(#URL_PAGE{module_edit,new=oui}|parametre_url{id_rubrique,#ID_RUBRIQUE})]">Proposer un module pour l’Université d’été</a></p>]
+		</B_derniere_edition>
+	</div>
+</section>
+</BOUCLE_content>

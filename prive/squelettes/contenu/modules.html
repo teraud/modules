@@ -1,0 +1,17 @@
+<h1 class="grostitre"><:module:titre_modules:></h1>
+<div class='onglets_simple clearfix'>
+	<ul>
+		<li>[(#SELF|parametre_url{id_ue_edition,''}|lien_ou_expose{Tous les modules,[(#ENV{id_ue_edition,''}|non)],ajax})]</li>
+		<BOUCLE_editions(UE_EDITIONS){par id_ue_edition}>
+		<li>
+			[(#SELF|parametre_url{id_ue_edition,#ID_UE_EDITION}|lien_ou_expose{#TITRE,#ENV{id_ue_edition,''}|=={#ID_UE_EDITION},ajax})]
+		</li>
+		</BOUCLE_editions>
+	</ul>
+</div>
+
+<INCLURE{fond=prive/objets/liste/modules,id_ue_edition=#ENV{id_ue_edition,''},statut=#GET{statuts},nb=30,env,ajax}>
+
+[(#AUTORISER{creer,module})
+	[(#URL_ECRIRE{module_edit,new=oui}|parametre_url{id_rubrique,#ENV{id_rubrique}}|icone_verticale{<:module:icone_creer_module:>,module,new,right})]
+]

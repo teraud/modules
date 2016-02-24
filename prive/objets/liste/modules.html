@@ -1,0 +1,40 @@
+#CACHE{0}
+[(#SET{defaut_tri,#ARRAY{
+	num titre_court,1,
+	id_module,1
+}})
+]<B_liste_modules>
+<div class="liste-objets modules">
+<table class='spip liste'>
+[<caption><strong class="caption">(#ENV*{titre_court,#GRAND_TOTAL|singulier_ou_pluriel{module:info_1_module,module:info_nb_modules}})</strong></caption>]
+	<thead>
+		<tr class='first_row'>
+			<th class='picto' scope='col'></th>
+			<th class='titre_court' scope='col'>[(#TRI{num titre_court,<:module:label_titre_court:>,ajax})]</th>
+			<th class='statut' scope='col'>[(#TRI{statut,Statut,ajax})]</th>
+			<th class='edition' scope='col'>Édition</th>
+			<th class='id' scope='col'>[(#TRI{id_module,<:info_numero_abbreviation:>,ajax})]</th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_modules(MODULES){id_rubrique?}{id_ue_edition?}{id_mot?}{id_auteur?}{where?}{statut!=poubelle}{recherche?}{tri num titre_court}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			<td class='picto'>[(#CHEMIN_IMAGE{module-16.png}|balise_img)]</td>
+			<td class='titre_court principale'><a href="[(#ID_MODULE|generer_url_entite{module})]" title="<:info_numero_abbreviation|attribut_html:> #ID_RUBRIQUE">#TITRE_COURT</a></td>
+			<td class='statut secondaire'>#STATUT</td>
+			<td class='edition secondaire'><BOUCLE_edition(UE_EDITIONS){id_ue_edition}>#TITRE</BOUCLE_edition></td>
+			<td class='id'>[(#AUTORISER{modifier,module,#ID_MODULE}|?{
+				<a href="[(#URL_ECRIRE{module_edit,id_module=#ID_MODULE})]">#ID_MODULE</a>,
+				#ID_MODULE
+			})]</td>
+		</tr>
+	</BOUCLE_liste_modules>
+	</tbody>
+</table>
+</div>
+</B_liste_modules>[
+<div class="liste-objets modules caption-wrap"><strong class="caption">(#ENV*{sinon,''})</strong></div>
+]<//B_liste_modules>
+
+#SET{args,#ARRAY}
+<a href="[(#URL_PAGE{transmettre,[(#VAL{modules}|param_low_sec{#GET{args}, '', 'transmettre'})]})]" class="noajax"><:statistiques:csv:></a>

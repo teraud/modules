@@ -1,0 +1,28 @@
+<paquet
+	prefix="modules"
+	categorie="edition"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.0;3.0.*]"
+	logo="prive/themes/spip/images/module-128.png"
+	schema="1.7.0"
+>
+	<nom>Modules</nom>
+
+	<auteur>CRID</auteur>
+	<licence>GNU/GPL</licence>
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/modules.php" />
+	<pipeline nom="declarer_tables_interfaces" inclure="base/modules.php" />
+	<pipeline nom="affiche_enfants" inclure="modules_pipelines.php" />
+	<pipeline nom="affiche_milieu" inclure="modules_pipelines.php" />
+	<pipeline nom="autoriser" inclure="inc/modules_autoriser.php" />
+
+	<necessite nom="saisies" compatibilite="[2.5.0;[" />
+	<necessite nom="compositions" compatibilite="[3.5.0;[" />
+	<utilise nom="accesrestreint" compatibilite="[3.13.0;[" />
+
+	<menu nom="modules" titre="module:titre_modules" parent="menu_edition" icone="images/module-16.png" />
+	<menu nom="module_creer" titre="module:icone_creer_module" parent="outils_rapides" icone="images/module-new-16.png" action="module_edit" parametres="new=oui" />
+
+</paquet>

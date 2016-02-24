@@ -1,0 +1,33 @@
+#CACHE{0}
+[(#ID_OBJET|intval|non)#SET{id,-#SESSION{id_auteur}}]
+[(#ID_OBJET|intval|oui)#SET{id,#ID_OBJET}]
+<div class="liste-objets intervenants" id="intervenants">
+<B_liste_intervenants>
+<table class='spip liste'>
+	<thead>
+		<tr class='first_row'>
+			<th class='nom' scope='col'>Nom</th>
+			[(#ENV{objet}=={module}|oui)<th class='temps' scope='col'>Temps</th>]
+			<th class='langues' scope='col'>Langues</th>
+			<th class='confirme' scope='col'>Confirmation</th>
+			<th colspan="2" scope='col'></th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_intervenants(INTERVENANTS){id_objet=#GET{id}}{objet=#ENV{objet}}{confirme!=Annulé-e}{tri nom}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})]">
+			<td class='nom principale'>#NOM #PRENOM</td>
+			[(#ENV{objet}=={module}|oui)<td class='temps'>#TEMPS</td>]
+			<td class='langue'>[(#LANGUE) ]#AUTRE_LANGUE</td>
+			<td class='confirme'>#CONFIRME</td>
+			<td class="modifier">
+				[(#AUTORISER{modifier,intervenant,#ID_INTERVENANT})<a href="[(#URL_PAGE{intervenant_edit,id_intervenant=#ID_INTERVENANT}|parametre_url{id_objet,#ENV{id_objet}}|parametre_url{objet,#ENV{objet}})]"
+					target="_blank"
+					onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{intervenant_edit,id_intervenant=#ID_INTERVENANT}|parametre_url{id_objet,#ENV{id_objet}}|parametre_url{objet,#ENV{objet}}|parametre_url{var_zajax,content})]');return false;}" >Modifier</a>]		
+			</td>
+		</tr>
+	</BOUCLE_liste_intervenants>
+	</tbody>
+</table>
+</B_liste_intervenants>
+</div>

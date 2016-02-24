@@ -1,0 +1,13 @@
+[(#ID_MODULE|intval|oui)
+	[(#AUTORISER{modifier,module,#ID_MODULE}|sinon_interdire_acces)]
+][(#ID_MODULE|intval|non)
+	[(#AUTORISER{creer,module,#ID_MODULE}|sinon_interdire_acces)]
+]
+<section>
+    <header class="cartouche">
+	    <h1>Ajouter/modifier un module</h1>
+    </header>
+    <div class="main">
+        #FORMULAIRE_EDITER_MODULE{#ENV{id_module,oui},#ENV{id_rubrique,0}}
+    </div>
+</section>

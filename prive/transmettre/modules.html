@@ -1,0 +1,9 @@
+<BOUCLE0(AUTEURS){tout}{id_auteur=#ENV{id}}{lang_select}><?php
+if ([(#ID_AUTEUR|securiser_acces{#ENV{cle},transmettre,#ENV{op}, #ENV{args}}|?{1,0})]) {
+?><BOUCLE2(spip_modules){statut=publie}{par nom}>#NOM;#PRENOM;#PAYS;#ORGANISATION;#MODULES_ATELIERS;#THEME_INTERVENTION;#FR;#EN;#ES;#PT;#AUTRES_LANGUES;#ESTIMATION_COUT;#NOM_REFERENT;#PRENOM_REFERENT;#ORGANISATION_REFERENT;#EMAIL_REFERENT;#TELEPHONE_REFERENT;#DEMANDE_PRISE_EN_CHARGE
+</BOUCLE2>
+<?php
+} else {
+include_spip('inc/minipres'); 
+echo minipres();
+}?></BOUCLE0>

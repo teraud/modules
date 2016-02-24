@@ -1,0 +1,5 @@
+<BOUCLE_module_regle(PAIEMENTS){id_objet=#ENV{id_module}}{objet=module}{statut_paiement=ok}>
+</BOUCLE_module_regle>
+</B_module_regle>
+<p><a href="[(#URL_PAGE{paiement_objet}|parametre_url{id_objet,#ENV{id_module}}|parametre_url{objet,module}|parametre_url{montant_total,1000})]">Régler ce module</a></p>
+<//B_module_regle>

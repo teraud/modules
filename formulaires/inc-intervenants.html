@@ -1,0 +1,10 @@
+#CACHE{0}
+<p><strong>Intervenant-e-s</strong></p>
+[
+(#INCLURE{fond=prive/objets/liste/intervenants, env, ajax=intervenants})
+]
+<div class="actions">
+	<a href="[(#URL_PAGE{intervenant_edit,new=oui}|parametre_url{id_objet,#ENV{id_objet,0}}|parametre_url{objet,#ENV{objet}})]"
+		target="_blank"
+		onclick="if (jQuery.modalbox) {jQuery.modalbox('[(#URL_PAGE{intervenant_edit,new=oui}|parametre_url{id_objet,#ENV{id_objet,0}}|parametre_url{objet,#ENV{objet}}|parametre_url{var_zajax,content})]', {autoResize: true});return false;}" >Ajouter un intervenant</a>
+</div>

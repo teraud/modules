@@ -1,0 +1,51 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_intervenant,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_intervenant' value='#ENV{id_intervenant}' />
+		<input type='hidden' name='id_objet' value='#ENV{id_objet}' />
+		<input type='hidden' name='objet' value='#ENV{objet}' />
+		
+		<ul>
+			[(#SAISIE{input, nom, label=<:module:label_nom_intervenant:>})]
+			[(#SAISIE{input, prenom, label=<:module:label_prenom_intervenant:>})]
+			[(#SAISIE{input, pays, label=<:module:label_pays_intervenant:>})]
+			[(#SAISIE{input, organisation, label=<:module:label_organisation_intervenant:>})]
+			
+			[(#ENV{objet}|=={module}|oui)
+			[(#SAISIE{checkbox, temps, label=Interviendra le(s),
+				datas=#ARRAY{
+					'1','Jeudi 7 juillet matin',
+					'2','Vendredi 8 juillet matin',
+					'3','Samedi 9 juillet matin'
+				}})]
+			]
+			
+			[(#SAISIE{radio, langue, label=Langue d'intervention,
+				datas=#ARRAY{
+					'français','français',
+					'anglais','anglais',
+					'espagnol','espagnol',
+					'portugais','portugais',
+					'arabe','arabe'
+				}})]
+			[(#SAISIE{input, autre_langue, label=<:partenaire:label_autre_langue:>})]
+			
+			[(#SAISIE{radio, confirme,
+				datas=#ARRAY{
+					'Confirmé-e','Confirmé-e',
+					'En attente de confirmation','En attente de confirmation',
+					'Annulé-e','Annulé-e'
+				}})]
+
+		</ul>
+		
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' name='enregistrer' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

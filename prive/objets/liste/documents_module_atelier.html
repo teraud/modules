@@ -1,0 +1,16 @@
+#CACHE{0}
+<B_documents>
+<table>
+	<BOUCLE_documents(DOCUMENTS){id_objet=#ENV{id_objet}}{objet=#ENV{objet}}>
+	<tr>
+		<td style="padding:5px;">[(#FICHIER*|basename)]</td>
+		<td style="padding:5px;">[(#TAILLE|taille_en_octets|texte_backend)]</td>
+		<td style="padding:5px;">
+			[(#AUTORISER{modifier,#ENV{objet},#ENV{id_objet}})
+				<a href="#URL_ACTION_AUTEUR{detacher_document_module_atelier,#ENV{id_objet}-#ENV{objet}-#ID_DOCUMENT,#SELF}" onclick="return confirm('Confirmer la suppression');" class="ajax supprimer">Supprimer</a>
+			]
+		</td>
+	</tr>
+	</BOUCLE_documents>
+</table>
+</B_documents>
