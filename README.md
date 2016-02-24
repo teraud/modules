@@ -1,3 +1,3 @@
-# Éditions de l'UE
+# Modules de l'UE
 
-Plugin SPIP permettant de définir les éditions de l'UESI
+Plugin SPIP permettant de gérer les modules de l'UESI
