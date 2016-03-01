@@ -20,6 +20,7 @@
 
 	<necessite nom="saisies" compatibilite="[2.5.0;[" />
 	<necessite nom="compositions" compatibilite="[3.5.0;[" />
+	<necessite nom="organisations" compatibilite="[1.0.0;[" />
 	<utilise nom="accesrestreint" compatibilite="[3.13.0;[" />
 
 	<menu nom="modules" titre="module:titre_modules" parent="menu_edition" icone="images/module-16.png" />
