@@ -1,0 +1,9 @@
+<ul class="breadcrumb">
+    <li><a href="#URL_SITE_SPIP/"><:accueil_site:></a><span class="divider"> &gt; </span></li>
+    <BOUCLE_module(MODULES) {id_module}>
+    <BOUCLE_ariane_hier(HIERARCHIE) {id_module}{tout}>
+    <li><a href="#URL_RUBRIQUE">[(#TITRE|couper{80})]</a><span class="divider"> &gt; </span></li>
+    </BOUCLE_ariane_hier>
+        <li class="active"><span class="on active">#TITRE_COURT</span></li>
+    </BOUCLE_module>
+</ul>
