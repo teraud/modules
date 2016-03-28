@@ -9,7 +9,7 @@ include_spip('inc/editer');
 function formulaires_editer_module_charger_dist($id_module='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 	$valeurs = formulaires_editer_objet_charger('module',$id_module,$id_rubrique,$lier_trad,$retour,$config_fonc,$row,$hidden);
 
-	if (!test_espace_prive() && !intval($valeurs['id_ue_edition'])) {
+	if (!intval($valeurs['id_ue_edition'])) {
 		$valeurs['id_ue_edition'] = sql_getfetsel('id_ue_edition', 'spip_ue_editions', 'statut="publie"', '', 'id_ue_edition desc', '0,1');
 	}
 
@@ -224,7 +224,7 @@ function formulaires_editer_module_traiter_dist($id_module='new', $id_rubrique=0
 			'.txt', $_FILES['ajouter_document']['tmp_name']));
 	}
 
-
+    /*
 	if ($res['message_ok'] && !test_espace_prive()) {
 
 		$res['message_ok'] = "Merci pour l’inscription de votre module. Dès sa validation par le CRID il apparaitra dans le tableau récapitulatif des modules, vous pourrez dès lors le compléter ou le modifier.";
@@ -232,8 +232,8 @@ function formulaires_editer_module_traiter_dist($id_module='new', $id_rubrique=0
 		$envoyer_mail = charger_fonction('envoyer_mail','inc');
 
 		$envoyer_mail('t.eraud@ritimo.org', "Mise à jour module", "Le module ".$res['id_module']." a été modifié.", "universite-si@crid.asso.fr", "X-Originating-IP: ".$GLOBALS['ip']);
-
 	}
+    */
 
 	if (test_espace_prive()) {
 		$res['redirect'] = generer_url_ecrire('module', 'id_module='.$res['id_module']);
