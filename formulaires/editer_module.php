@@ -105,21 +105,10 @@ function forum_documents_acceptes(){
 
 function formulaires_editer_module_verifier_dist($id_module='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 
-	$erreurs = formulaires_editer_objet_verifier('module', $id_module, array('id_ue_edition', 'nom_referent', 'prenom_referent', 'organisation_referent', 'adresse_referent', 'code_postal_referent', 'ville_referent', 'email_referent', 'email_referent_confirmation', 'telephone_referent', 'id_organisation', 'titre_court', 'presentation'));
+	$erreurs = formulaires_editer_objet_verifier('module', $id_module, array('id_ue_edition', 'id_organisation', 'titre_court', 'presentation'));
 
 	if(!_request('autres_organisations_france') && !_request('complement_autres_organisations')) {
 		$erreurs['autres_organisations_france'] = _T('info_obligatoire');
-	}
-
-	if (!$erreurs && !is_email(_request('email_referent'))) {
-		$erreurs['email_referent'] = 'Votre email n\'est pas valide';
-	}
-	if (!$erreurs && !is_email(_request('email_referent_confirmation'))) {
-		$erreurs['email_referent_confirmation'] = 'Votre email n\'est pas valide';
-	}
-	if (!$erreurs && _request('email_referent') != _request('email_referent_confirmation')) {
-		$erreurs['email_referent'] = "Vous devez indiquer le même mail";
-		$erreurs['email_referent_confirmation'] = "Vous devez indiquer le même mail";
 	}
 
 	if (!isset($GLOBALS['visiteur_session']['tmp_forum_document'])) {
