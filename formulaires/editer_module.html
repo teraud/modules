@@ -52,18 +52,17 @@
 			
 			<ul>
 				
-				<li class="editer editer_organisation_chef_de_file obligatoire saisie_selection">
-					<label  for="champ_id_organisation">Organisation chef de file<span class='obligatoire'>  *</span></label>[
+				<li class="editer editer_organisation_chef_de_file saisie_selection">
+					<label  for="champ_id_organisation">Organisation chef de file</label>[
 					<span class="erreur_message">(#ENV**{erreurs}|table_valeur{id_organisation})</span>
 					]<select name="id_organisation" id="champ_id_organisation">
 						<option value=""></option>
 						<INCLURE{fond=formulaires/inc-organisations-select-modules}{env}>
 					</select>
 				</li>
-				[(#SAISIE{explication, id_organisation, texte=<:module:explication_orga_chef_de_file:>})]			
 				
-				<li class="editer editer_autres_organisations_france obligatoire saisie_checkbox">
-					<label>Autres organisations France impliquées<span class='obligatoire'>  *</span></label>[
+				<li class="editer editer_autres_organisations_france saisie_checkbox">
+					<label>Autres organisations France impliquées</label>[
 					<span class="erreur_message">(#ENV**{erreurs}|table_valeur{autres_organisations_france})</span>
 					]<INCLURE{fond=formulaires/inc-organisations-checkbox-modules}{env}>
 				</li>

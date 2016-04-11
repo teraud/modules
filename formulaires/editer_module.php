@@ -105,11 +105,7 @@ function forum_documents_acceptes(){
 
 function formulaires_editer_module_verifier_dist($id_module='new', $id_rubrique=0, $retour='', $lier_trad=0, $config_fonc='', $row=array(), $hidden=''){
 
-	$erreurs = formulaires_editer_objet_verifier('module', $id_module, array('id_ue_edition', 'id_organisation', 'titre_court', 'presentation'));
-
-	if(!_request('autres_organisations_france') && !_request('complement_autres_organisations')) {
-		$erreurs['autres_organisations_france'] = _T('info_obligatoire');
-	}
+	$erreurs = formulaires_editer_objet_verifier('module', $id_module, array('id_ue_edition', 'titre_court', 'presentation'));
 
 	if (!isset($GLOBALS['visiteur_session']['tmp_forum_document'])) {
 		session_set('tmp_forum_document',
