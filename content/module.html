@@ -10,34 +10,43 @@
         
         [<div class="texte">(#PRESENTATION_GENERALE|image_reduire{500,0})</div>]
 
-        [<h3 class="spip">#MODELE{module_temps_1, id_ue_edition}</h3>
-        <div class="texte">
-	        <p><strong>(#THEME_TEMPS_1)</strong></p>
-	        [(#PRESENTATION_TEMPS_1|image_reduire{500,0})]]    
-	        <B_intervenants1>
-	        <strong>Intervenant-e-s : </strong>
-	        <BOUCLE_intervenants1(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==1}{confirme!=Annulé-e}{', '}>#PRENOM #NOM (#ORGANISATION - #PAYS)</BOUCLE_intervenants1>
-        [(#THEME_TEMPS_1|oui)</div>]
+        [<div class="temps">
+            <h3 class="spip">#MODELE{module_temps_1, id_ue_edition}</h3>
+            <div class="texte">
+	            <p><strong>(#THEME_TEMPS_1)</strong></p>
+	            [(#PRESENTATION_TEMPS_1|image_reduire{500,0})]]
+	            <B_intervenants1>
+	            <strong>Intervenant-e-s : </strong>
+	            <BOUCLE_intervenants1(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==1}{confirme!=Annulé-e}{', '}>#PRENOM #NOM [(#ORGANISATION|ou{#PAYS})(][(#ORGANISATION)[(#PAYS|oui) - ]]#PAYS[(#ORGANISATION|ou{#PAYS}))]</BOUCLE_intervenants1>
+            [(#THEME_TEMPS_1|oui)</div>
+        </div>]
 
-        [<h3 class="spip">#MODELE{module_temps_2, id_ue_edition}</h3>
-        <div class="texte">
-	        <p><strong>(#THEME_TEMPS_2)</strong></p>
-	        [(#PRESENTATION_TEMPS_2|image_reduire{500,0})]]
-	        <B_intervenants2>
-	        <strong>Intervenant-e-s : </strong>
-	        <BOUCLE_intervenants2(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==2}{confirme!=Annulé-e}{', '}>#PRENOM #NOM (#ORGANISATION - #PAYS)</BOUCLE_intervenants2>
-        [(#THEME_TEMPS_2|oui)</div>]
+        [<div class="temps">
+            <h3 class="spip">#MODELE{module_temps_2, id_ue_edition}</h3>
+            <div class="texte">
+	            <p><strong>(#THEME_TEMPS_2)</strong></p>
+	            [(#PRESENTATION_TEMPS_2|image_reduire{500,0})]]
+	            <B_intervenants2>
+	            <strong>Intervenant-e-s : </strong>
+	            <BOUCLE_intervenants2(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==2}{confirme!=Annulé-e}{', '}>#PRENOM #NOM [(#ORGANISATION|ou{#PAYS})(][(#ORGANISATION)[(#PAYS|oui) - ]]#PAYS[(#ORGANISATION|ou{#PAYS}))]</BOUCLE_intervenants2>
+            [(#THEME_TEMPS_2|oui)</div>
+        </div>]
 
-        [<h3 class="spip">#MODELE{module_temps_3, id_ue_edition}</h3>
-        <div class="texte">
-	        <p><strong>(#THEME_TEMPS_3)</strong></p>
-	        [(#PRESENTATION_TEMPS_3|image_reduire{500,0})]]
-	        <B_intervenants3>
-	        <strong>Intervenant-e-s : </strong>
-	        <BOUCLE_intervenants3(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==3}{confirme!=Annulé-e}{', '}>#PRENOM #NOM (#ORGANISATION - #PAYS)</BOUCLE_intervenants3>
-        [(#THEME_TEMPS_3|oui)</div>]
+        [<div class="temps">
+            <h3 class="spip">#MODELE{module_temps_3, id_ue_edition}</h3>
+            <div class="texte">
+	            <p><strong>(#THEME_TEMPS_3)</strong></p>
+	            [(#PRESENTATION_TEMPS_3|image_reduire{500,0})]]
+	            <B_intervenants3>
+	            <strong>Intervenant-e-s : </strong>
+	            <BOUCLE_intervenants3(INTERVENANTS){id_objet=#ID_MODULE}{objet=module}{temps==3}{confirme!=Annulé-e}{', '}>#PRENOM #NOM [(#ORGANISATION|ou{#PAYS})(][(#ORGANISATION)[(#PAYS|oui) - ]]#PAYS[(#ORGANISATION|ou{#PAYS}))]</BOUCLE_intervenants3>
+            [(#THEME_TEMPS_3|oui)</div>
+        </div>]
 
-        [<div class="ps">(#DOCUMENTS_COMPLEMENTAIRES|image_reduire{500,0})</div>]
+        [<div class="texte">
+            <p><strong>Documents et liens complémentaires : </strong></p>
+            (#DOCUMENTS_COMPLEMENTAIRES|image_reduire{500,0})
+        </div>]
 
         [<div class="ps"><p><strong>Partenaires internationaux : </strong>(#PARTENAIRES_INTERNATIONAUX)</p></div>]
 
