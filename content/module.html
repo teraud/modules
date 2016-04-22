@@ -3,11 +3,20 @@
 
     <header class="cartouche">
         <h1 class="titre">#TITRE_COURT</h1>
+        <div class="postmeta">
+			<B_tags>
+			<span class="tags">
+				<ul class="inline list-inline">
+					<BOUCLE_tags(MOTS){id_module}{type!=squelette_habillage}><li><a href="[(#URL_MOT|parametre_url{id_secteur,#ID_SECTEUR})]"><i class="icon-tag"></i> #TITRE</a></li></BOUCLE_tags>
+				</ul>
+			</span>
+			</B_tags>
+		</div>
     </header>
-    
+
     <div class="main">
         [<p class="chapo">(#PRESENTATION)</p>]
-        
+
         [<div class="texte">(#PRESENTATION_GENERALE|image_reduire{500,0})</div>]
 
         [<div class="temps">
