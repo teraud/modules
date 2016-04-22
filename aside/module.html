@@ -1,0 +1,14 @@
+<BOUCLE_aside(MODULES){id_module}>
+
+<B_modules>
+<div class="liste modules">
+    <h2 class="h2"><:meme_rubrique:></h2>
+    <ul class="liste-items">
+        <BOUCLE_modules(MODULES) {id_ue_edition}{par num titre_court}>
+        <li class="item"><a href="#URL_MODULE"[ class="(#EXPOSE)"]>#TITRE_COURT</a></li>
+        </BOUCLE_modules>
+    </ul>
+</div>
+</B_modules>
+
+</BOUCLE_aside>
