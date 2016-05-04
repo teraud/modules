@@ -2,6 +2,7 @@
 <article>
 
     <header class="cartouche">
+        [(#LOGO_MODULE|image_reduire{200,200})]
         <h1 class="titre">#TITRE_COURT</h1>
         <div class="postmeta">
 			<B_tags>
@@ -62,7 +63,7 @@
         <div class="ps">
 	        <p>
 		        <strong>Organisé par : </strong>
-		        <BOUCLE_orga(ORGANISATIONS){id_organisation}>#INTITULE_COURT</BOUCLE_orga><B_autres_organisations>, 
+		        <BOUCLE_orga(ORGANISATIONS){id_organisation}>#INTITULE_COURT</BOUCLE_orga><B_autres_organisations>,
 		        <BOUCLE_autres_organisations(ORGANISATIONS spip_organisations_liens){id_objet=#ID_MODULE}{objet=module}{', '}>
 			    #INTITULE_COURT
 		        </BOUCLE_autres_organisations>
@@ -84,5 +85,5 @@
         </B_documents_joints>
 	</aside>
 
-</article>		
+</article>
 </BOUCLE_content>
